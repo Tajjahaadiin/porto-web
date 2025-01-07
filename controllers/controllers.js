@@ -3,6 +3,10 @@ const config = require("../config/config.json");
 const { formatDateToWIB } = require("../utils/time");
 const { Project } = require("../models");
 const Swal = require("sweetalert2");
+const {
+  testimonials,
+  filterTestimonialByStar,
+} = require("../utils/testimonials");
 const sequelize = new Sequelize(config.development);
 
 function renderHome(req, res) {
@@ -16,6 +20,7 @@ async function renderProject(req, res) {
   const projects = await Project.findAll({
     order: [["createdAt", "DESC"]],
   });
+
   res.render("project", { projects: projects });
 }
 function renderaddProject(req, res) {
@@ -57,7 +62,8 @@ async function renderProjectDetail(req, res) {
   res.render("project-detail", { data: project[0] });
 }
 function renderTestimonial(req, res) {
-  res.render("testimonials");
+  const testimonialData = testimonials;
+  res.render("testimonials", { data: testimonialData });
 }
 function renderContact(req, res) {
   res.render("contact");

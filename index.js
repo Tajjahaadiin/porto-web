@@ -18,6 +18,9 @@ const {
 const app = express();
 const port = 5000;
 const { formatDateToWIB, getRelativeTime } = require("./utils/time");
+const { truncateText } = require("./utils/truncate");
+const { techValue } = require("./utils/techvalue");
+const { filterTestimonialByStar } = require("./utils/testimonials");
 
 // handlebars declaration
 app.set("view engine", "hbs");
@@ -27,6 +30,9 @@ hbs.registerHelper("getRelativeTime", getRelativeTime);
 hbs.registerHelper("equal", function (a, b) {
   return a == b;
 });
+
+hbs.registerHelper("getStack", techValue);
+hbs.registerHelper("truncate", truncateText);
 
 // static path/ static file
 app.set("views", path.join(__dirname, "./views"));

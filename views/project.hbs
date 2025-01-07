@@ -1,78 +1,81 @@
 {{#> layout title="Project"}}
-<main>
-      <section class="mb-5">
-        <div class=" container text-center">
-        <h1 class='text-center my-5'style="font-family: Anton">MY PROJECT</h1>
-       <a href="/addproject" class="btn-Project" type="button">
-  <span class="btn-Project__text">Add Project</span>
-  <span class="btn-Project__icon"><i class="fa-solid fa-plus"></i></span>
-</a>
+  <main>
+    <section class="mb-5">
+      <div class=" container text-center">
+        <h1 class='text-center my-5' style="font-family: Anton; color: var(--retro-br-green)">MY PROJECT</h1>
+        <a href="/addproject" class="btn-Project" type="button">
+          <span class="btn-Project__text">Add Project</span>
+          <span class="btn-Project__icon"><i class="fa-solid fa-plus"></i></span>
+        </a>
 
-        <div id="projectlist" class="container-fluid mx-auto px-5 mt-4 row row-cols-md-3 justify-content-center">
+        <div id="projectlist" class="container-fluid mx-auto px-5 mt-4 row row-cols-md-3 ">
 
           {{#each projects}}
-          <div id="${i}" class=" d-flex justify-content-center my-3 ">
-            <div class="card card-stadard p-3 col mx-0">
-              <div class="ratio ratio-16x9 " >
-              <img src="/assets/images/{{ this.image }}"  class="card-img-top  w-100 object-fit-cover img-fluid"  alt="project-image" />
+            <div id="${i}" class=" d-flex j my-3 ">
+              <div class="card card-stadard pb-2 px-3 col mx-0">
+                <div class="ratio ratio-16x9 ">
+                  <img src="/assets/images/{{ this.image }}" class="card-img-top  w-100 object-fit-cover img-fluid"
+                    alt="project-image" />
 
-              </div>
-                <div class=" text-start border-none px-0" >
-                   <a href="/project-detail/{{this.id}}" class="card-title fs-3 fw-bold">
-                   {{this.title}}
+                </div>
+                <div class=" text-start my-3 border-none px-0">
+                  <a href="/project-detail/{{this.id}}" class="card-title fs-3 fw-bold"
+                    style="color: var(--retro-br-green)">
+                    {{this.title}}
                   </a>
                   <p class="card-text fs-5">{{formatDateToWIB this.createdAt}} | {{getRelativeTime this.updatedAt}} </p>
-                  <div class="" style="height: 100px">
-                  <p class="fs-4">
-                    {{this.content}}
-                  </p>
+                  <div class="" style="height: 75px">
+                    <p class="fs-4" style="border-bottom:1px solid var(--retro-grey)">
+                      {{truncate this.content 100}}
+                    </p>
                   </div>
-
-
-                  <div class="text-center">
-                    <a href="/edit-project/{{this.id}}?image={{ this.image }}" class="btn-edit">Edit</a>
+                  <div class="d-flex gap-3 ">
+                    {{{getStack this.teknologi}}}
+                  </div>
+                  <div class="text-center d-flex justify-content-evenly mt-3">
+                    <a href="/edit-project/{{this.id}}?image={{ this.image }}" class="btn-custom btn-edit">Edit</a>
                     <form action="/delet-project/{{this.id}}?_method=DELETE" method="post" style="display: inline;">
-                    <button onclick="archiveFunction()" type="submit" class="btn-delet">Delete</button>
+                      <button onclick="archiveFunction()" type="submit" class="btn-custom btn-delete">Delete</button>
                     </form>
                   </div>
                 </div>
               </div>
-          </div>
+            </div>
           {{else}}
-          <p style="text-align: center;">There is no content</p>
+            <p style="text-align: center;">There is no content</p>
           {{/each}}
         </div>
-      </section>
-    </main>
-    <script>function archiveFunction (){
+    </section>
+  </main>
+  <script>function archiveFunction() {
       event.preventDefault();
-      const form= event.target.form;
+      const form = event.target.form;
       Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire({
-  position: "center",
-  icon: "success",
-  title: "Your work has been saved",
-  showConfirmButton: false,
-  timer: 1500
-});
-    setTimeout(()=>{
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          setTimeout(() => {
 
-    form.submit();
-    },1500)
-  }
-});
-      }
+            form.submit();
+          }, 1500)
+        }
+      });
+    }
 
-    </script>
-    <script src="/assets/javascript/btn.js" ></script>
-    <script src="/assets/javascript/sweetalert.min.js" ></script>
+  </script>
+  <script src="/assets/javascript/btn.js"></script>
+  <script src="/assets/javascript/sweetalert.min.js"></script>
 {{/layout}}
