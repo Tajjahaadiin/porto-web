@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand image-brand" href="#"
+          ><img src="/assets/images/logo.svg" alt="logo site" class="nav-image"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item me-3">
+              <a class="nav-link {{#if (equal currentPage 'Home')}}active {{/if}} " href="/">Home</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link {{#if (equal currentPage 'Project')}}active {{/if}}" href="project">My Project</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link {{#if (equal currentPage 'Testimonial')}}active {{/if}}" href="testimonial">Testimonials</a>
+            </li>
+          </ul>
+          <div class="contact {{#if (equal currentPage 'contact')}}inContact {{/if}} "><a {{#if (equal currentPage 'contact')}}style="color:var(--retro-grey)" {{/if}}href="contact">Contact me </a></div>
+        </div>
+      </div>
+    </nav>

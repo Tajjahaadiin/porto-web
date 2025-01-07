@@ -1,0 +1,181 @@
+{{#>layout title="Edit Project"}}
+   <div class="Edit-page">
+      <section class="project-form">
+       <form action="/update-project/{{data.id}}?_method=PATCH&image={{ data.image }}" method="post" class="container-form">
+          <h1
+            class="section-project-title text-center mt-5"
+            style="font-family: Anton"
+          >
+            EDIT MY PROJECT
+          </h1>
+          <div class="row form-field mb-3">
+            <label for="input-project-title" class="form-label col-6"
+              >Project Name</label
+            >
+            <input
+              id="inputTitle"
+              name="inputTitle"
+              class="form-control g-col-6"
+              type="text"
+              placeholder="Enter Name Project"
+              value="{{data.title}}"
+              required
+            />
+          </div>
+
+          <div class="row gap-5 form-field mb-3">
+            <div class="row col-6">
+              <label for="input-project-title" class="form-label col-6"
+                >Start Date</label
+              >
+              <input
+                id="startDate"
+                name="startDate"
+                class="form-control col-3"
+                type="date"
+                placeholder=""
+                required
+              />
+            </div>
+            <div class="row col-6">
+              <label for="input-project-title" class="form-label"
+                >End Date</label
+              >
+              <input
+                id="endDate"
+                name="endDate"
+                class="form-control col-3"
+                type="date"
+                placeholder=""
+                required
+              />
+            </div>
+          </div>
+          >
+          <div class="from-field mb-3">
+            <label class="form-label" for="input-project-content"
+              >Description</label
+            >
+            <textarea
+              id="inputContent"
+              name="inputContent"
+              class="form-control"
+              rows="8"
+              required
+            >{{data.content}}</textarea>
+          </div>
+
+          <div class="checkbox_input mb-3" required>
+            <label class="form-label" for="input-blog-content"
+              >Technologies</label
+            >
+            <div class="row">
+              <div class="form-check col-6">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="angular"
+                  name="angular"
+                  value="Angular"
+                   {{#if angular}}checked{{/if}}
+                />
+                <label class="form-check-label" for="angular">angular</label>
+              </div>
+              <div class="form-check col-6">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="nodeJs"
+                  name="nodeJs"
+                  value="NodeJs"
+                   {{#if node}}checked{{/if}}
+                />
+                <label class="form-check-label" for="nodeJs"> Node Js</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-check col-6">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="react"
+                  name="react"
+                  value="React"
+                  {{#if react}}checked{{/if}}
+                />
+                <label class="form-check-label" for="react"> React</label>
+              </div>
+              <div class="form-check col-6">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="vueJs"
+                  name="vueJs"
+                  value="VueJs"
+                  {{#if vue}}checked{{/if}}
+                />
+                <label class="form-check-label" for="vueJs"> Vue Js</label
+                ><br />
+              </div>
+            </div>
+          </div>
+           <div class="from-field">
+            <label for="input-project-image" class="form-label"
+              >Upload Image</label
+            >
+          <div class="input-group mb-3">
+            <label
+              for="input-project-image"
+              class="image-camouflage input-group-text fs-4"
+              ><span class="button">choose</span></label
+            >
+            <input
+              id="input-project-image"
+              name="image"
+              type="file"
+              class="form-control input-image"
+              placeholder="image title"
+              aria-label="add image"
+              aria-describedby="basic-addon2"
+            />
+            <span for="input-project-image" class="input-group-text paperclip"
+              ><i class="fa-solid fa-paperclip fs-4"></i
+            ></span>
+          </div>
+
+          <div class="d-flex mb-3 justify-content-end m">
+             <button onclick="buttonsaveadd()" class="from-submit-button" type="submit">submit</button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <script>
+      function buttonsave(){
+        event.preventDefault();
+        const form= event.target.form;
+     Swal.fire({
+  title: "Do you want to save the changes?",
+  showDenyButton: true,
+  showCancelButton: false,
+  confirmButtonText: "Save",
+  denyButtonText: `Don't save`
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    Swal.fire("Saved!", "", "success");
+     setTimeout(()=>{
+
+    form.submit();
+    },1500)
+  } else if (result.isDenied) {
+    Swal.fire("Changes are not saved", "", "info");
+  }
+});
+
+  }
+
+    </script>
+    <script src="/assets/javascript/btn.js" ></script>
+    <script src="/assets/javascript/sweetalert.min.js" ></script>
+
+{{/layout }}

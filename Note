@@ -1,0 +1,9 @@
+challenge :
+buat halaman detail (detail blog/detail project) dan menggunakan dynamic routing. ketika memilih blog/project, maka yang muncul adalah detail blog/project tersebut
+
+Resource:
+
+1. HTTPS Method
+2. untuk buat layout : https://www.emmanuelgautier.com/blog/snippets/handlebarsjs-layout buat layout
+3. handlebars each untuk mapping data
+4. handlebars conditional

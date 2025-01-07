@@ -1,0 +1,68 @@
+/* From Uiverse.io by andrew-demchenk0 */
+.btn-Project {
+  margin: auto;
+  --main-focus: #2d8cf0;
+  --font-color: #323232;
+  --bg-color-sub: #dedede;
+  --bg-color: #eee;
+  --main-color: #323232;
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.btn-Project,
+.btn-Project__icon,
+.btn-Project__text {
+  transition: all 0.3s;
+}
+
+.btn-Project .btn-Project__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.btn-Project .btn-Project__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-Project:hover {
+  background: var(--bg-color);
+}
+
+.btn-Project:hover .btn-Project__text {
+  color: transparent;
+}
+
+.btn-Project:hover .btn-Project__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.btn-Project:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+
+/* //card style \\ */
+.card-stadard {
+  width: 270px;
+  height: 370px;
+}

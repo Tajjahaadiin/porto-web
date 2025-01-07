@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+:root {
+  --retro-white: #f5f7f8;
+  --retro-drk-green: #379777;
+  --retro-yellow: #f4ce14;
+  --retro-grey: #45474b;
+  --retro-red: #ff1e00;
+  --retro-pale-green: #e8f9fd;
+  --retro-br-green: #59ce8f;
+  --retro-black: #000000;
+}
+html {
+  /* changing the font for responsive purposes */
+  font-size: 62.5%; /*equal to 10px*/
+}
+body {
+  background-color: #bdf2d5;
+  font-family: "Raleway", serif;
+}
+a {
+  text-decoration: none;
+}
+img {
+  width: 100%;
+  object-fit: cover;
+}
+nav {
+  height: 5rem;
+  background-color: var(--retro-pale-green);
+  padding: 0 6rem !important;
+}
+.image-brand {
+  height: 3rem;
+  width: 3rem;
+  vertical-align: middle;
+}
+.nav-link {
+  font-size: 1.8rem;
+  color: var(--retro-black);
+}
+.contact a {
+  font-size: 1.6rem;
+  color: var(--retro-yellow);
+}
+.contact {
+  background-color: var(--retro-grey);
+  /* border: 2px solid var(--retro-yellow); */
+  width: 12rem;
+  height: 3.5rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.active {
+  font-weight: bold;
+  color: var(--retro-yellow) !important;
+}
+.inContact {
+  color: var(--retro-grey);
+  background-color: var(--retro-yellow);
+}
+
+/* Main SEction  */
+.info-content {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  background-color: var(--retro-drk-green);
+  border: 2px solid var(--retro-grey);
+  box-shadow: 4px 4px var(--retro-grey);
+}
+.text-image h1 {
+  font-family: "Anton", sans-serif;
+}
+.profil-text h5,
+.wellcome-text article p {
+  font-size: 1.8rem;
+}
+.wellcome-text {
+  padding: 2rem 3rem;
+}
+.profil-text p {
+  font-size: 1.3rem;
+}
+.wellcome-text article p {
+  font-size: 1.6rem;
+  color: var(--retro-white);
+  text-align: justify;
+}
+.wellcome-text h1 {
+  color: var(--retro-yellow);
+}
+.middle-info {
+  margin: 2rem 0;
+}
+.middle-info a {
+  font-size: 1.6rem;
+  color: var(--retro-black);
+  color: var(--retro-white);
+}
+.middle-info a:first-child {
+  border: 1px solid var(--retro-yellow);
+  color: var(--retro-yellow);
+  border-radius: 5rem;
+  background-color: var(--retro-grey);
+  height: 3rem;
+}
+.social-icons a {
+  font-size: 2rem;
+  color: var(--retro-yellow);
+}
+.photo-image .card {
+  padding: 0;
+  border: 2px solid var(--retro-grey);
+  box-shadow: 4px 4px var(--retro-grey);
+}
+.image-wrapper {
+  height: 100%;
+  width: 100%;
+}
+.image-card {
+  height: 30rem;
+}
+
+/* Project Style  */
+.project-form {
+  margin: auto;
+  width: 50rem;
+  font-size: 1.4rem;
+}
+.section-project-title {
+  color: var(--retro-br-green);
+}
+.project-form label {
+  font-weight: bold;
+  width: 100%;
+}
+.form-field {
+  width: 100%;
+  height: auto;
+  font-size: 1.6rem;
+}
+.form-control {
+  height: 4.3rem;
+  font-size: 1.6rem;
+}
+textarea[class~="form-control"] {
+  height: 15rem;
+}
+
+.from-submit-button {
+  border-radius: 5rem;
+  height: 3rem;
+  width: 10rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  background-color: var(--retro-grey);
+  margin-left: auto;
+  color: var(--retro-yellow);
+}
+.input-image {
+  display: none;
+}
+label.image-camouflage {
+  width: 90%;
+  height: 3rem;
+  background-color: white;
+  z-index: 999;
+  padding: 0;
+  height: 3rem;
+}
+label.image-camouflage span {
+  background-color: var(--retro-br-green);
+  position: absolute;
+  left: 0px;
+  margin: 0;
+  height: 3rem;
+  border-radius: 5px;
+  color: var(--retro-black);
+  font-size: 1.5rem;
+  vertical-align: center;
+  width: 8rem;
+  font-weight: bold;
+}
+/* contact section  */
+.contact-section {
+  width: 50rem;
+  padding: 0;
+}
+
+.contact-section .form-fluid {
+  width: 100%;
+  height: 3rem;
+}
+.contact-msg {
+  height: 10rem;
+}
+@media screen and (min-width: 980px) /* Desktop */ {
+}
+
+@media screen and (max-width: 979px) /* Tablet */ {
+  nav {
+    padding: 0 !important;
+  }
+
+  nav li,
+  .contact {
+    border-bottom: 1px solid var(--retro-drk-green);
+  }
+  .contact {
+    height: 3.7rem;
+    width: calc(100% - 10px);
+    border: none;
+  }
+  nav ul {
+    margin: 0;
+  }
+  .navbar-collapse {
+    margin-top: 2rem;
+  }
+
+  .image-brand {
+    position: sticky;
+  }
+}
+
+@media screen and (max-width: 500px) /* Mobile */ {
+}

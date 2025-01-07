@@ -1,0 +1,55 @@
+{{#>layout title="Project Detail" }}
+<main>
+  <section class="blogdetail-container">
+     <div class='project-detail-content' style="max-width: 840px;">
+      <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/assets/img/{{ data.image }}" class="project-img img-fluid rounded-start"  alt="image-poject">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body" style="gap: 20px;">
+        <h5 class="card-title">{{data.title}}</h5>
+          <p class="card-text">{{data.content}}</p>
+          <p>{{formatDateToWIB data.createdAt}} </p>
+        <div class="card-text">
+          <div class="icone-f">
+          <i class="fa-brands fa-js"></i>
+          <i class="fa-brands fa-angular"></i>
+          <i class="fa-brands fa-react"></i>
+          <i class="fa-brands fa-vuejs"></i>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    {{!-- <div class="cotainer-card" style="max-width: 840px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/assets/img/blog-img-detail.png" class="project-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{data.title}}</h5>
+          <p class="card-text">{{data.content}}</p>
+          <div class="icone-f">
+          <i class="fa-brands fa-js"></i>
+          <i class="fa-brands fa-angular"></i>
+          <i class="fa-brands fa-react"></i>
+          <i class="fa-brands fa-vuejs"></i>
+          </div>
+        </div>
+    </div>
+  </div>
+</div> --}}
+
+    {{!-- <div class="project-detail">
+      <h1>{{data.title}}</h1>
+      <div class="project-detail-content">
+      <img src="/assets/img/blog-img-detail.png" class="project-img " alt="" />
+      <p>{{data.content}}</p>
+      </div>
+    </div> --}}
+  </section>
+</main>
+{{/layout }}
