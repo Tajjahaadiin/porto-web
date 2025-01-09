@@ -1,25 +1,28 @@
 {{#> layout title="contact" }}
- <main class="contact-section m-auto">
+    <main class="contact-section m-auto">
         <form id="contactForm" class="contact-form px-2 ">
             <h1 class="text-center mb-3 mt-3 p-5">GET IN TOUCH</h1>
             <div class="row form-field">
                 <label class="col-6 fs-4" for="name">Name</label>
-                <input class="form-fluid col-6" id="name" name="name" class="form-input" type="text" placeholder="" required />
+                <input class="form-fluid col-6" id="name" name="name" class="form-input" type="text" placeholder=""
+                    value="{{#if user}}{{user.username}}{{/if}}" required />
             </div>
 
             <div class="row form-field">
                 <label class="fs-4" for="email">Email</label>
-                <input id="email" class=" col-6 form-fluid" name="email" class="form-input" type="email" placeholder="" required />
+                <input id="email" class=" col-6 form-fluid" name="email" class="form-input" type="email"
+                    value="{{#if user}}{{user.email}}{{/if}}" placeholder="" required />
             </div>
 
             <div class="row form-field">
                 <label class="fs-4" for="phoneNumber">Phone Number</label>
-                <input id="phoneNumber" name="phoneNumber" class="form-input form-fluid" type="number" placeholder="" required/>
+                <input id="phoneNumber" name="phoneNumber" class="form-input form-fluid" type="number" placeholder=""
+                    required />
             </div>
 
             <div class="row form-field">
                 <label class="fs-4" for="subject">Subject</label>
-                <input id="subject"  name="subject" class="form-input   form-fluid" placeholder="" required></input>
+                <input id="subject" name="subject" class="form-input   form-fluid" placeholder="" required></input>
             </div>
 
             <div class=" row form-field">
@@ -27,7 +30,7 @@
                 <textarea id="message" name="message" class="form-input contact-msg" required></textarea>
             </div>
             <div class="d-flex justify-content-end mt-5">
-            <button type="submit" class="from-submit-button mr-auto">Submit</button>
+                <button type="submit" class="from-submit-button mr-auto">Submit</button>
 
             </div>
         </form>

@@ -3,10 +3,14 @@
     <section class="mb-5">
       <div class=" container text-center">
         <h1 class='text-center my-5' style="font-family: Anton; color: var(--retro-br-green)">MY PROJECT</h1>
-        <a href="/addproject" class="btn-Project" type="button">
-          <span class="btn-Project__text">Add Project</span>
-          <span class="btn-Project__icon"><i class="fa-solid fa-plus"></i></span>
-        </a>
+
+        {{#if user}}
+          <a href="/addproject" class="btn-Project" type="button">
+            <span class="btn-Project__text">Add Project</span>
+            <span class="btn-Project__icon"><i class="fa-solid fa-plus"></i></span>
+          </a>
+        {{/if}}
+
 
         <div id="projectlist" class="container-fluid mx-auto px-5 mt-4 row row-cols-md-3 ">
 
@@ -14,22 +18,23 @@
             <div id="${i}" class=" d-flex j my-3 ">
               <div class="card card-stadard pb-2 px-3 col mx-0">
                 <div class="ratio ratio-16x9 ">
-                  <img src="/assets/images/{{ this.image }}" class="card-img-top  w-100 object-fit-cover img-fluid"
+                  <img src="{{ this.image }}" class="card-img-top  w-100 object-fit-cover img-fluid"
                     alt="project-image" />
 
                 </div>
                 <div class=" text-start my-3 border-none px-0">
                   <a href="/project-detail/{{this.id}}" class="card-title fs-3 fw-bold"
                     style="color: var(--retro-br-green)">
-                    {{this.title}}
+                    {{this.title}} | {{this.user.username}}
                   </a>
-                  <p class="card-text fs-5">{{formatDateToWIB this.createdAt}} | {{getRelativeTime this.updatedAt}} </p>
+                  <p class="card-text fs-5">{{formatDateToWIB this.createdAt}} | {{getDuration dateStart dateEnd}}
+                    remaining </p>
                   <div class="" style="height: 75px">
                     <p class="fs-4" style="border-bottom:1px solid var(--retro-grey)">
                       {{truncate this.content 100}}
                     </p>
                   </div>
-                  <div class="d-flex gap-3 ">
+                  <div class="tech-stack font-small d-flex gap-3 ">
                     {{{getStack this.teknologi}}}
                   </div>
                   <div class="text-center d-flex justify-content-evenly mt-3">

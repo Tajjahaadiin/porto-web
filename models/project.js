@@ -9,14 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Project.belongsTo(models.User, {
+        foreignKey: "user_id",
+        as: "user",
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE",
+      });
     }
   }
   Project.init(
     {
       title: DataTypes.STRING,
       content: DataTypes.STRING,
-      teknologi: DataTypes.STRING,
       image: DataTypes.STRING,
+      teknologi: DataTypes.STRING,
+      dateStart: DataTypes.STRING,
+      dateEnd: DataTypes.STRING,
     },
     {
       sequelize,

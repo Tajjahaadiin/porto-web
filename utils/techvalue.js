@@ -1,10 +1,18 @@
 function techValue(techValue) {
-  const string = techValue.split(",");
   var holder = "";
+
+  let string = techValue.split(",");
   const template = string.forEach((element) => {
     var techString = element.toLowerCase();
-    holder += `<i class="fa-brands fa-${techString} fs-2"></i>`;
+
+    if (techString === "nodejs") {
+      techString = "node-js";
+      holder += `<i class="fa-brands fa-${techString} "></i>`;
+    } else {
+      holder += `<i class="fa-brands fa-${techString} "></i>`;
+    }
   });
   return holder;
 }
+
 module.exports = { techValue };

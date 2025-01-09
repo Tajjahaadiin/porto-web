@@ -1,55 +1,23 @@
 {{#>layout title="Project Detail" }}
-<main>
-  <section class="blogdetail-container">
-     <div class='project-detail-content' style="max-width: 840px;">
-      <div class="row g-0">
-    <div class="col-md-4">
-      <img src="/assets/img/{{ data.image }}" class="project-img img-fluid rounded-start"  alt="image-poject">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body" style="gap: 20px;">
-        <h5 class="card-title">{{data.title}}</h5>
-          <p class="card-text">{{data.content}}</p>
-          <p>{{formatDateToWIB data.createdAt}} </p>
-        <div class="card-text">
-          <div class="icone-f">
-          <i class="fa-brands fa-js"></i>
-          <i class="fa-brands fa-angular"></i>
-          <i class="fa-brands fa-react"></i>
-          <i class="fa-brands fa-vuejs"></i>
-          </div>
-          </div>
-      </div>
-    </div>
-  </div>
 
-    {{!-- <div class="cotainer-card" style="max-width: 840px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="/assets/img/blog-img-detail.png" class="project-img" alt="...">
+  <div class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="d-flex p-5 gap-3   row-cols-md-2 blog-content w-75 my-5 border border-dark " style="height: 450px;
+      background-color: var(--retro-pale-green); box-shadow: 12px 12px 12px var(--retro-grey)">
+      <div class=" blog-image">
+        <img class="col object-fit-cover border rounded" style="width: 350px; height:350px; "
+          src="/assets/images/{{data.image}}" alt="content-image">
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{data.title}}</h5>
-          <p class="card-text">{{data.content}}</p>
-          <div class="icone-f">
-          <i class="fa-brands fa-js"></i>
-          <i class="fa-brands fa-angular"></i>
-          <i class="fa-brands fa-react"></i>
-          <i class="fa-brands fa-vuejs"></i>
-          </div>
+      <div class="col blog-content d-flex flex-column">
+        <h1>{{data.title}}</h1>
+        <div class="stack-tech my-3 d-flex gap-5">
+          {{{getStack data.teknologi}}}
         </div>
-    </div>
-  </div>
-</div> --}}
-
-    {{!-- <div class="project-detail">
-      <h1>{{data.title}}</h1>
-      <div class="project-detail-content">
-      <img src="/assets/img/blog-img-detail.png" class="project-img " alt="" />
-      <p>{{data.content}}</p>
+        <p class="fs-5 my-3 ">{{getDuration data.dateStart data.dateEnd}}</p>
+        <article class="fs-4 flex-fill d-flex">
+          <p class="text-wrap word-wrap text-break w-100 ">{{data.content}}</p>
+        </article>
       </div>
-    </div> --}}
-  </section>
-</main>
+    </div>
+
+  </div>
 {{/layout }}

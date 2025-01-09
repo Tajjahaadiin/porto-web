@@ -28,7 +28,39 @@ function formatDateToWIB(date) {
 
   return formattedDate;
 }
+function getValidtime(startDate, endDate) {
+  let diff = Math.floor(endDate - startDate);
+  if (diff <= 0) {
+    return false;
+  } else {
+    return true;
+  }
+}
+function getDuration(startDate, endDate) {
+  startDate = new Date(startDate);
+  endDate = new Date(endDate);
+  let diffInSeconds = Math.floor((endDate - startDate) / 1000);
+  //   console.log(diffInSeconds);
 
+  if (diffInSeconds < 60) {
+    return `Durasi : ${diffInSeconds} second${diffInSeconds > 1 ? "s" : ""} `;
+  }
+  let diffInMinutes = Math.floor(diffInSeconds / 60);
+  if (diffInMinutes < 60) {
+    return `Durasi : ${diffInMinutes} minute${diffInMinutes > 1 ? "s" : ""} `;
+  }
+  let diffInHours = Math.floor(diffInMinutes / 60);
+  if (diffInHours < 24) {
+    return `Durasi : ${diffInHours} hours${diffInHours > 1 ? "s" : ""}  `;
+  }
+  let diffInDays = Math.floor(diffInHours / 24);
+  if (diffInDays < 30) {
+    return `Durasi : ${diffInDays} day${diffInDays > 1 ? "s" : ""} `;
+  }
+
+  let diffInMonth = Math.floor(diffInDays / 30);
+  return `Durasi : ${diffInMonth} monts${diffInMonth > 1 ? "s" : ""} `;
+}
 function getRelativeTime(targetDate) {
   let now = new Date();
   let diffInSeconds = Math.floor((now - targetDate) / 1000);
@@ -61,4 +93,5 @@ function getRelativeTime(targetDate) {
 module.exports = {
   formatDateToWIB,
   getRelativeTime,
+  getDuration,
 };

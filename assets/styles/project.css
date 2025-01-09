@@ -97,6 +97,19 @@
 .card-stadard {
   width: 330px;
   height: 430px;
-  box-shadow: 4px 5px 0 0 var(--retro-grey);
+  box-shadow: 4px 4px 4px 0 var(--retro-grey);
   background-color: var(--retro-pale-green);
+}
+.card-animate {
+  box-shadow: 4px 4px 4px 0 var(--retro-grey);
+  background-color: var(--retro-pale-green);
+}
+.card-animate:hover {
+  transform: translateY(-10px);
+  box-shadow: 12px 12px 12px 0 var(--retro-grey);
+  background-color: var(--retro-pale-green);
+}
+.card-stadard:hover {
+  transform: translateY(-10px);
+  box-shadow: 12px 12px 12px 0 var(--retro-grey);
 }

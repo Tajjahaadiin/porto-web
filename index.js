@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
+const session = require("express-session");
+const uploads = require("./middleware/fileupload");
 const {
   renderHome,
   renderProject,
@@ -13,11 +15,29 @@ const {
   updateProject,
   deletProject,
   addProject,
+  renderLogin,
+  renderRegister,
+  authRegister,
+  authLogin,
+  authLogout,
 } = require("./controllers/controllers");
-
+require("dotenv").config();
 const app = express();
 const port = 5000;
-const { formatDateToWIB, getRelativeTime } = require("./utils/time");
+
+app.use(
+  session({
+    name: "my-session",
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+const {
+  formatDateToWIB,
+  getRelativeTime,
+  getDuration,
+} = require("./utils/time");
 const { truncateText } = require("./utils/truncate");
 const { techValue } = require("./utils/techvalue");
 const { filterTestimonialByStar } = require("./utils/testimonials");
@@ -32,6 +52,7 @@ hbs.registerHelper("equal", function (a, b) {
 });
 
 hbs.registerHelper("getStack", techValue);
+hbs.registerHelper("getDuration", getDuration);
 hbs.registerHelper("truncate", truncateText);
 
 // static path/ static file
@@ -49,11 +70,16 @@ app.get("/project", renderProject);
 app.get("/testimonial", renderTestimonial);
 app.get("/contact", renderContact);
 app.get("/addproject", renderaddProject);
-app.post("/addProject", addProject);
+app.post("/addProject", uploads.single("image"), addProject);
 app.get("/project-detail/:id", renderProjectDetail);
 app.get("/edit-project/:id", renderEditProject);
 app.patch("/update-project/:id", updateProject);
 app.delete("/delet-project/:id", deletProject);
+app.get("/login", renderLogin);
+app.post("/login", authLogin);
+app.get("/register", renderRegister);
+app.post("/register", authRegister);
+app.get("/logout", authLogout);
 app.get("*", renderHandle);
 
 app.listen(port, () => {

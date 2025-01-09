@@ -1,0 +1,23 @@
+{{#>layout title=register}}
+    <div class="login-form-container container-fluid">
+        <p class="login-title">Signing up</p>
+        <form class="login-form" action="" method="post">
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-regular fa-user fs-2"></i></span>
+                <input type="username" name="username" class="login-input" placeholder="Name">
+            </div>
+            <div class="input-group flex-grow-1 ">
+                <span class="input-group-text"><i class="fa-regular fa-envelope fs-2"></i></span>
+                <input type="email" name="email" class="login-input" placeholder="Email">
+            </div>
+            <div class="input-group ">
+                <span class="input-group-text"><i class="fa-solid fa-lock fs-2"></i></span>
+                <input type="password" name="password" class="login-input" placeholder="Password maximun 10"
+                    maxlength="10">
+            </div>
+            <button class="login-form-btn">Log in</button>
+        </form>
+
+
+    </div>
+{{/layout}}
