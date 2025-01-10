@@ -88,3 +88,4 @@ app.get("*", renderHandle);
 app.listen(port, () => {
   console.log(`app running sucessfully on port: ${port}`);
 });
+module.exports = app;
