@@ -1,5 +1,5 @@
 const { Sequelize, QueryTypes, Model, DataTypes } = require("sequelize");
-const config = require("../config/config.json");
+const config = require("../config/config");
 const bycrypt = require("bcrypt");
 const { formatDateToWIB } = require("../utils/time");
 const { Project, User } = require("../models");
@@ -10,8 +10,6 @@ const {
   filterTestimonialByStar,
 } = require("../utils/testimonials");
 const flash = require("express-flash");
-const env = process.env.NODE_ENV || "production";
-const sequelize = new Sequelize(config["production"]);
 
 function renderHome(req, res) {
   const { user } = req.session;

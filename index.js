@@ -23,6 +23,9 @@ const {
   authLogout,
 } = require("./controllers/controllers");
 require("dotenv").config();
+
+const env = process.env.NODE_ENV;
+const sequelize = new Sequelize(config[env]);
 const app = express();
 const port = 5000;
 
