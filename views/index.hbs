@@ -50,11 +50,18 @@
             <img src="/assets/images/profil.jpg" class="card-img-top image-card" alt="profil">
             <div class="card-body profil-text">
               <h5 class="card-title text-center">Tajjuddiin</h5>
-              <p class="card-text text-center">Fullstac Developer</p>
+              <p class="card-text text-center">Fullstack Developer</p>
             </div>
           </div>
         </div>
       </section>
     </div>
   </main>
+  <script src="./utils/alert.js"></script>
+
+  {{#if messages.success}}
+    <script>
+      alertSuccess('{{messages.success}}')
+    </script>
+  {{/if}}
 {{/layout}}

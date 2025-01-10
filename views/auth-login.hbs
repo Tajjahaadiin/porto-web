@@ -11,7 +11,7 @@
                 <input type="password" name="password" class="login-input" placeholder="Password">
             </div>
 
-            <button class="login-form-btn">Log in</button>
+            <button class="login-form-btn" onclick=" " type="submit">Log in</button>
         </form>
         <p class="login-sign-up-label">
             Don't have an account?<a href="/register" class="login-sign-up-link">Sign up</a>
@@ -19,4 +19,34 @@
 
     </div>
     <div class="blur fullcanvas"></div>
+    <script src="./utils/alert.js"></script>
+    <script>function archiveFunction() {
+            event.preventDefault();
+            const form = event.target.form;
+            Swal.fire({
+                title: "Drag me!",
+                icon: "success",
+                draggable: true
+            });
+            setTimeout(() => {
+
+                form.submit();
+            }, 1500)
+        }
+
+    </script>
+    {{messages.info}}
+
+    {{#if messages.success}}
+        <script>
+            alertSuccess('{{messages.success}}')
+        </script>
+    {{/if}}
+    {{#if messages.error}}
+        <script>
+            alertSuccess('{{messages.error}}')
+        </script>
+    {{/if}}
+
+
 {{/layout}}

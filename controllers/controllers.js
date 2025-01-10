@@ -4,11 +4,14 @@ const bycrypt = require("bcrypt");
 const { formatDateToWIB } = require("../utils/time");
 const { Project, User } = require("../models");
 const Swal = require("sweetalert2");
+const fs = require("fs");
 const {
   testimonials,
   filterTestimonialByStar,
 } = require("../utils/testimonials");
-const sequelize = new Sequelize(config.development);
+const flash = require("express-flash");
+const env = process.env.NODE_ENV || "production";
+const sequelize = new Sequelize(config["production"]);
 
 function renderHome(req, res) {
   const { user } = req.session;
@@ -20,7 +23,7 @@ function renderHome(req, res) {
 async function renderProject(req, res) {
   const { user } = req.session;
   const projects = await Project.findAll({
-    include: { model: User, as: "user" },
+    include: { model: User, as: "user", attributes: { exclude: ["password"] } },
     order: [["createdAt", "DESC"]],
   });
 
@@ -62,7 +65,7 @@ async function addProject(req, res) {
     checkBox += vueJs.concat(",");
   }
   const user_id = user.id;
-  const title = await Project.create({
+  const createProject = await Project.create({
     title: `${inputTitle}`,
     content: `${inputContent}`,
     image: `${imageHandle}`,
@@ -75,7 +78,11 @@ async function addProject(req, res) {
 }
 async function renderProjectDetail(req, res) {
   const { id } = req.params;
+  const { user } = req.session;
   const project = await Project.findByPk(id);
+  if (!user) {
+    res.redirect("/login");
+  }
   if (project === null) {
     res.render("404");
   } else {
@@ -86,7 +93,8 @@ async function renderProjectDetail(req, res) {
   // console.log(project);
 }
 function renderTestimonial(req, res) {
-  res.render("testimonials");
+  const { user } = req.session;
+  res.render("testimonials", { user: user });
 }
 function renderContact(req, res) {
   const { user } = req.session;
@@ -118,8 +126,9 @@ async function renderEditProject(req, res) {
 async function updateProject(req, res) {
   const { id } = req.params;
   const img = req.query.image;
-  let { inputTitle, inputContent, image } = req.body;
+  let { inputTitle, inputContent, image, dateStart, dateEnd } = req.body;
   const { angular, nodeJs, react, vueJs } = req.body;
+  const { loggedUser } = req.session;
 
   if (image == "") {
     image = img;
@@ -138,14 +147,28 @@ async function updateProject(req, res) {
   if (vueJs) {
     checkBox.push(vueJs);
   }
+  await Project.update(
+    {
+      title: `${inputTitle}`,
+      dateStart: `${dateStart}`,
+      dateEnd: `${dateEnd}`,
+      content: `${inputContent}`,
+      teknologi: `${checkBox}`,
+      image: `${image}`,
+      updateAt: sequelize.fn("NOW"),
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
 
-  const query = `UPDATE public."Projects"
-                  SET title ='${inputTitle}', content ='${inputContent}', image ='${image}', teknologi ='${checkBox}'
-                 WHERE id = ${id}`;
+  // const query = `UPDATE public."Projects"
+  //                 SET title ='${inputTitle}', content ='${inputContent}', image ='${image}', teknologi ='${checkBox}', 'dateStart'='${dateStart}', 'dateEnd'='${dateEnd}',
+  //                WHERE id = ${id}`;
 
-  const result = await sequelize.query(query, { type: QueryTypes.UPDATE });
-
-  // console.log(result);
+  // await sequelize.query(query, { type: QueryTypes.UPDATE });
 
   res.redirect("/project");
 }
@@ -154,19 +177,9 @@ async function deletProject(req, res) {
 
   const query = `DELETE FROM public."Projects"
                   WHERE id = ${id}`;
-  try {
-    const result = await sequelize.query(query, { type: QueryTypes.DELETE });
-    if (result.ok) {
-      // console.log("hasil:", result.ok);
-      Event.preventDefault();
-      window.alert("hai");
-    }
-    Swal.fire("SweetAlert2 is working!:", result);
-    console.log(result.ok);
-    res.redirect("/project");
-  } catch (err) {
-    console.error(err.message);
-  }
+
+  const result = await sequelize.query(query, { type: QueryTypes.DELETE });
+  res.redirect("/project");
 }
 function renderLogin(req, res) {
   res.render("auth-login");
@@ -180,35 +193,50 @@ function renderHandle(req, res) {
 }
 async function authRegister(req, res) {
   const { username, email, password } = req.body;
+
   const saltRound = 10;
   const hashpass = await bycrypt.hash(password, saltRound);
-  try {
-    const user = await User.create({ username, email, password: hashpass });
-    console.log("ini adalah username", username, email, password);
-  } catch (err) {
-    console.error(err.message);
+  if (!username || !email || !password) {
+    req.flash("error", "input cannot be empty");
+    return res.redirect("/register");
   }
+
+  let getUser = await User.findOne({ where: { email: email } });
+
+  if (getUser) {
+    req.flash("error", "email sudah terdaftar");
+    return res.redirect("/register");
+  }
+
+  await User.create({ username, email, password: hashpass });
+
+  req.flash("success", "register succes");
   res.redirect("/login");
 }
 async function authLogin(req, res) {
   const { email, password } = req.body;
   console.log(password);
+
   let getUser = await User.findOne({ where: { email } });
   console.log(getUser);
+
   if (getUser === null || !getUser) {
-    console.log("User tidak ketemu");
-    return res.render("404");
+    req.flash("error", "input cannot be empty");
+    return res.redirect("/login");
   }
+
   console.log("this is", getUser.password);
   const isValidated = await bycrypt.compare(password, getUser.password);
   console.log(isValidated);
 
   if (!isValidated) {
-    return res.render("404", { message: "Password Salah" });
+    req.flash("error", "wrong password");
+    return res.redirect("/login");
   }
   let loggedUser = getUser.toJSON();
   delete loggedUser.password;
   req.session.user = loggedUser;
+  req.flash("success", "login success");
   res.redirect("/");
 }
 

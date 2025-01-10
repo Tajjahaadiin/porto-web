@@ -15,12 +15,12 @@
         <div class="row gap-5 form-field mb-3">
           <div class="row col-6">
             <label for="input-project-title" class="form-label col-6">Start Date</label>
-            <input id="startDate" name="startDate" class="form-control col-3" type="date" value="{{data.dateStart}}"
+            <input id="dateStart" name="dateStart" class="form-control col-3" type="date" value="{{data.dateStart}}"
               placeholder="" required />
           </div>
           <div class="row col-6">
             <label for="input-project-title" class="form-label">End Date</label>
-            <input id="endDate" name="endDate" class="form-control col-3" type="date" value="{{data.dateEnd}}" />
+            <input id="dateEnd" name="dateEnd" class="form-control col-3" type="date" value="{{data.dateEnd}}" />
           </div>
         </div>
 
@@ -69,7 +69,7 @@
           </div>
 
           <div class="d-flex mb-3 justify-content-end m">
-            <button onclick="buttonsaveadd()" class="from-submit-button" type="submit">submit</button>
+            <button onclick="buttonsave()" class="from-submit-button" type="submit">submit</button>
           </div>
       </form>
     </section>

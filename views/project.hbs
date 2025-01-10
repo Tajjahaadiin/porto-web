@@ -20,7 +20,6 @@
                 <div class="ratio ratio-16x9 ">
                   <img src="{{ this.image }}" class="card-img-top  w-100 object-fit-cover img-fluid"
                     alt="project-image" />
-
                 </div>
                 <div class=" text-start my-3 border-none px-0">
                   <a href="/project-detail/{{this.id}}" class="card-title fs-3 fw-bold"
@@ -37,12 +36,14 @@
                   <div class="tech-stack font-small d-flex gap-3 ">
                     {{{getStack this.teknologi}}}
                   </div>
-                  <div class="text-center d-flex justify-content-evenly mt-3">
-                    <a href="/edit-project/{{this.id}}?image={{ this.image }}" class="btn-custom btn-edit">Edit</a>
-                    <form action="/delet-project/{{this.id}}?_method=DELETE" method="post" style="display: inline;">
-                      <button onclick="archiveFunction()" type="submit" class="btn-custom btn-delete">Delete</button>
-                    </form>
-                  </div>
+                  {{#if (equal this.user_id ../user.id)}}
+                    <div class="text-center d-flex justify-content-evenly mt-3">
+                      <a href="/edit-project/{{this.id}}?image={{ this.image }}" class="btn-custom btn-edit">Edit</a>
+                      <form action="/delet-project/{{this.id}}?_method=DELETE" method="post" style="display: inline;">
+                        <button onclick="archiveFunction()" type="submit" class="btn-custom btn-delete">Delete</button>
+                      </form>
+                    </div>
+                  {{/if}}
                 </div>
               </div>
             </div>

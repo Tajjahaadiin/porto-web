@@ -3,6 +3,7 @@ const path = require("path");
 const hbs = require("hbs");
 const session = require("express-session");
 const uploads = require("./middleware/fileupload");
+const flash = require("express-flash");
 const {
   renderHome,
   renderProject,
@@ -25,6 +26,7 @@ require("dotenv").config();
 const app = express();
 const port = 5000;
 
+app.use(flash());
 app.use(
   session({
     name: "my-session",
@@ -58,6 +60,7 @@ hbs.registerHelper("truncate", truncateText);
 // static path/ static file
 app.set("views", path.join(__dirname, "./views"));
 app.use("/assets", express.static(path.join(__dirname, "./assets")));
+app.use("/utils", express.static(path.join(__dirname, "./utils")));
 
 // middleware
 app.use(express.json()); // for parsing application/json

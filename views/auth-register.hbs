@@ -15,9 +15,17 @@
                 <input type="password" name="password" class="login-input" placeholder="Password maximun 10"
                     maxlength="10">
             </div>
-            <button class="login-form-btn">Log in</button>
+            <button class="login-form-btn">Let's go</button>
         </form>
+        <script src="/utils/alert.js"></script>
+        {{#if messages}}
+            <script>
+                if ('{{ messages.error }}') {
+                    alertError('{{messages.error}}')
+                }
 
+            </script>
 
+        {{/if}}
     </div>
 {{/layout}}

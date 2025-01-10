@@ -16,11 +16,17 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "b59_personalweb",
-    "host": "127.0.0.1",
+    "username": "portodb_owner",
+    "password": "UBDNSrypt2V0",
+    "database": "portodb",
+    "host": "ep-jolly-bar-a1d38rpd.ap-southeast-1.aws.neon.tech",
     "port": "5432",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
