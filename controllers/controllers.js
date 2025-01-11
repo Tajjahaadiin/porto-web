@@ -10,7 +10,10 @@ const {
   filterTestimonialByStar,
 } = require("../utils/testimonials");
 const flash = require("express-flash");
+require("dotenv").config();
 
+const env = process.env.NODE_ENV;
+const sequelize = new Sequelize(config[env]);
 function renderHome(req, res) {
   const { user } = req.session;
 
