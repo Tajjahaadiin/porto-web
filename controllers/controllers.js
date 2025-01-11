@@ -12,7 +12,7 @@ const {
 const flash = require("express-flash");
 require("dotenv").config();
 
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV || "production";
 const sequelize = new Sequelize(config[env]);
 function renderHome(req, res) {
   const { user } = req.session;
@@ -218,7 +218,7 @@ async function authLogin(req, res) {
   const { email, password } = req.body;
   console.log(password);
 
-  let getUser = await User.findOne({ where: { email } });
+  let getUser = await User.findOne({ where: { email: email } });
   console.log(getUser);
 
   if (getUser === null || !getUser) {
